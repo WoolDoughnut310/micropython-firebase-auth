@@ -1,5 +1,4 @@
 import sys
-import network
 
 if sys.implementation.name == "micropython":
     import urequests as requests
