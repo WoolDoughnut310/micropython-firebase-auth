@@ -1,6 +1,6 @@
 # micropython-firebase-auth
 
-**Firebase implementation** based on [REST API](https://firebase.google.com/docs/reference/rest/database) (https://github.com/micropython/micropython-esp32) based on [micropython-firebase-realtime-database](https://github.com/ckoever/micropython-firebase-realtime-database) from ckoever.
+**Firebase implementation** based on [REST API](https://firebase.google.com/docs/reference/rest/database), based on [micropython-firebase-realtime-database](https://github.com/ckoever/micropython-firebase-realtime-database) from ckoever.
 
 ### Installation
 You can use **uPip** to install library from **PyPi**
