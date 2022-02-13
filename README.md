@@ -10,7 +10,7 @@ upip.install("micropython-firebase-auth")
 ```
 or you can just upload `firebase_auth/firebase_auth.py` to your microcontroller:
 ```bash
-python pyboard.py -d PORT -f cp irebase_auth.py :
+python pyboard.py -d PORT -f cp firebase_auth.py :
 ```
 
 ### Commands that are implemented
