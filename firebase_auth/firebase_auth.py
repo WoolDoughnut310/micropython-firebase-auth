@@ -36,33 +36,28 @@ class AuthSession:
             token_expiry=time.time() + int(data["expiresIn"])
         ))
 
-    def auth_request(self, endpoint, data=None, **kwargs):
+    def request(self, endpoint, data=None, method=None, **kwargs):
         if data is None:
             data = {}
-        data["returnSecureToken"] = True
-        response = requests.post(
-            f"{AUTH_ENDPOINT}:{endpoint}?key={self.api_key}",
-            json=data,
-            **kwargs
-        )
 
-        self._check_status_code(response)
-        data = response.json()
-        self._handle_credentials(data)
-        return response
-
-    def request(self, method, endpoint, data=None, **kwargs):
-        if data is None:
-            data = {}
-        data["idToken"] = self.access_token
+        if method:
+            data["idToken"] = self.access_token
+        else:
+            # Endpoint returning credentials
+            data["returnSecureToken"] = True
 
         response = requests.request(
-            method,
+            method if method is not None else "POST",
             f"{AUTH_ENDPOINT}:{endpoint}?key={self.api_key}",
             json=data,
             **kwargs
         )
         self._check_status_code(response)
+
+        if method is None:
+            data = response.json()
+            self._handle_credentials(data)
+
         return response
 
     @property
@@ -153,7 +148,7 @@ class FirebaseAuth:
 
     # Refreshes user data
     def refresh_user(self):
-        response = self.session.request("POST", "lookup")
+        response = self.session.request("lookup", method="POST")
         raw_user = response.json()["users"][0]
         self._fill_details(raw_user)
 
@@ -164,13 +159,13 @@ class FirebaseAuth:
             data = {}
         else:
             data = dict(email=email, password=password)
-        self.session.auth_request("signUp", data)
+        self.session.request("signUp", data)
         self.refresh_user()
 
     # Sign in a user with an email and password.
     def sign_in(self, email, password):
         data = dict(email=email, password=password)
-        self.session.auth_request("signInWithPassword", data)
+        self.session.request("signInWithPassword", data)
         self.refresh_user()
 
     # Clear user session
