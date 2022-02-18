@@ -1,6 +1,6 @@
 # micropython-firebase-auth
 
-**Firebase implementation** based on [REST API](https://firebase.google.com/docs/reference/rest/database) optimized for the [ESP32 version of Micropython](https://github.com/micropython/micropython-esp32) based on [micropython-firebase-realtime-database](https://github.com/ckoever/micropython-firebase-realtime-database) from ckoever.
+**Firebase implementation** based on [REST API](https://firebase.google.com/docs/reference/rest/auth), based on [micropython-firebase-realtime-database](https://github.com/ckoever/micropython-firebase-realtime-database) from ckoever.
 
 ### Installation
 
@@ -14,7 +14,7 @@ upip.install("micropython-firebase-auth")
 or you can just upload `firebase_auth/firebase_auth.py` to your microcontroller:
 
 ```bash
-python pyboard.py -d PORT -f cp irebase_auth.py :
+python pyboard.py -d PORT -f cp firebase_auth.py :
 ```
 
 ### Commands that are implemented
