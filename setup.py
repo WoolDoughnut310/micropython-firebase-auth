@@ -9,7 +9,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="micropython-firebase-auth",
-    version="1.0.5",
+    version="1.0.6",
     author="WoolDoughnut310",
     author_email="wooldoughnutspi@outlook.com",
     description="Firebase Auth implementation for Micropython optimized for ESP32.",
